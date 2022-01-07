@@ -1,0 +1,5 @@
+fileignoreconfig:
+- filename: info.xml
+  checksum: 3765d1b571d4335cc0b7e0f1c91763cb02eaccdc4ed74a97de18040af8ae4299
+- filename: auth0jwt.civix.php
+  checksum: 20e42a9e09f02a66caf84566232cb10aeb81381903cbfa58a7489eb44fda95cb
