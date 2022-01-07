@@ -5,6 +5,29 @@ require_once 'auth0jwt.civix.php';
 use CRM_Auth0jwt_ExtensionUtil as E;
 // phpcs:enable
 
+
+/**
+ * Implements hook_civicrm_crypto().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_crypto/
+ */
+function auth0jwt_civicrm_crypto($registry) {
+  if (
+    !empty($auth0SigningKeyId = \Civi::settings()->get('auth0jwt_public_signing_key_id'))
+    && !empty($auth0SigningKeyCert = \Civi::settings()->get('auth0jwt_public_signing_key_cert'))
+  ) {
+    // Despite the name, this works just fine with public keys
+    $registry->addSymmetricKey([
+      'id' => $auth0SigningKeyId,
+      'key' => $auth0SigningKeyCert,
+      'suite' => 'jwt-rs256',
+      'tags' => ['SIGN'],
+      // TODO: Is using -1 this still the best approach?
+      'weight' => -1,
+    ]);
+  }
+}
+
 /**
  * Implements hook_civicrm_config().
  *
