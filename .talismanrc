@@ -1,5 +1,5 @@
 fileignoreconfig:
-  - filename: settings/Auth0jwt.setting.php
-    checksum: 4213508d94414601fdcbb587a9cf1787a398c9b011c9945d468cc7168ee497c3
   - filename: auth0jwt.php
-    checksum: ab068b78e2aaff0f5393fcbbd069b32a86e5a52372ac00e14fc699757d65f640
+    checksum: 082beafb8f57396bf9e59a88582aa3503c61b5e20d44c7dc371a8aaefb612d52
+  - filename: CRM/Auth0jwt/Utils.php
+    checksum: 7d4a2334c6206ad8f4e6eaa76ba3325bcf393f30d1c852d5bbe909002578ef7d

@@ -14,12 +14,12 @@ use CRM_Auth0jwt_ExtensionUtil as E;
 function auth0jwt_civicrm_crypto($registry) {
   if (
     !empty($auth0SigningKeyId = \Civi::settings()->get('auth0jwt_public_signing_key_id'))
-    && !empty($auth0SigningKeyCert = \Civi::settings()->get('auth0jwt_public_signing_key_cert'))
+    && !empty($auth0SigningKeyPem = \Civi::settings()->get('auth0jwt_public_signing_key_pem'))
   ) {
     // Despite the name, this works just fine with public keys
     $registry->addSymmetricKey([
       'id' => $auth0SigningKeyId,
-      'key' => $auth0SigningKeyCert,
+      'key' => $auth0SigningKeyPem,
       'suite' => 'jwt-rs256',
       'tags' => ['SIGN'],
       // TODO: Is using -1 this still the best approach?
