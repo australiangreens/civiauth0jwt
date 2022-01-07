@@ -1,0 +1,28 @@
+{
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "[php]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false
+  },
+  "[sql]": {
+    "editor.defaultFormatter": null,
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 2
+  },
+  "intelephense.format.braces": "k&r",
+  "intelephense.environment.phpVersion": "7.3"
+}
