@@ -12,6 +12,8 @@ use CRM_Auth0jwt_ExtensionUtil as E;
  */
 function auth0jwt_civicrm_config(&$config) {
   _auth0jwt_civix_civicrm_config($config);
+  // This is where we'll add symfony listeners if we need to
+  // E.g. Civi::service('dispatcher')->addListener('hook_civicrm_post', 'auth0jwt_symfony_civicrm_post', -99);
 }
 
 /**
@@ -159,14 +161,14 @@ function auth0jwt_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-//function auth0jwt_civicrm_navigationMenu(&$menu) {
-//  _auth0jwt_civix_insert_navigation_menu($menu, 'Mailings', array(
-//    'label' => E::ts('New subliminal message'),
-//    'name' => 'mailing_subliminal_message',
-//    'url' => 'civicrm/mailing/subliminal',
-//    'permission' => 'access CiviMail',
-//    'operator' => 'OR',
-//    'separator' => 0,
-//  ));
-//  _auth0jwt_civix_navigationMenu($menu);
-//}
+function auth0jwt_civicrm_navigationMenu(&$menu) {
+  _auth0jwt_civix_insert_navigation_menu($menu, 'Administer', array(
+    'label' => E::ts('Auth0jwt'),
+    'name' => 'auth0jwt_settings',
+    'url' => 'civicrm/admin/setting/auth0jwt',
+    'permission' => 'administer CiviCRM',
+    'operator' => 'OR',
+    'separator' => 0,
+  ));
+  _auth0jwt_civix_navigationMenu($menu);
+}

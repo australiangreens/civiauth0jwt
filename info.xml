@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <extension key="au.org.greens.auth0jwt" type="module">
   <file>auth0jwt</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
+  <name>Auth0jwt</name>
+  <description>CiviCRM extension to allow authorising api calls using JWTs signed by Auth0</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>FIXME</author>
-    <email>FIXME</email>
+    <author>Anthony Blond</author>
+    <email>anthony@unfinishedteleporter.com</email>
   </maintainer>
   <urls>
     <url desc="Main Extension Page">http://FIXME</url>
