@@ -1,6 +1,6 @@
 fileignoreconfig:
   - filename: CRM/Auth0jwt/Utils.php
-    checksum: 3692c135947cd4de4c497675d6247efc3e4b7d3e32f0374115b3589254332c4c
+    checksum: c06bbb8fa2ad634858ea04118fc75b8ee288c2d60a4c4f4ce482a3ec635bdf4a
   - filename: CRM/Auth0jwt/Form/Settings.php
     checksum: ae8be4e7322179b881bd6f8ae42a1b6f7e7f2b9dd12c5f265153d6c2bd8adf24
   - filename: auth0jwt.civix.php

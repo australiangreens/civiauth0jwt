@@ -6,14 +6,17 @@
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
 class CRM_Auth0jwt_Form_Settings extends CRM_Admin_Form_Setting {
-  // protected $_settings = [
-  //   'auth0jwt_auth0_domain' => CRM_Core_BAO_Setting::SYSTEM_PREFERENCES_NAME,
-  //   'auth0jwt_public_signing_key_id' => CRM_Core_BAO_Setting::SYSTEM_PREFERENCES_NAME,
-  //   'auth0jwt_public_signing_key_pem' => CRM_Core_BAO_Setting::SYSTEM_PREFERENCES_NAME,
-  // ];
 
   public function buildQuickForm() {
-    Civi::resources()->addStyle('pre.auth0jwt-static { background: #dfdfdf; padding: 10px; font-family: monospace; border: 1px solid silver;}');
+    $styleStrs = [
+      'background: #dfdfdf',
+      'padding: 10px',
+      'font-family: monospace',
+      'border: 1px solid silver',
+      'width: 64ch',
+    ];
+
+    Civi::resources()->addStyle('pre.auth0jwt-static {' . implode(';', $styleStrs) . '}');
 
     // public_signing_key_id and auth0jwt_public_signing_key_pem are settings,
     // but we don't let the user edit them directly, instead the current values
@@ -33,10 +36,7 @@ class CRM_Auth0jwt_Form_Settings extends CRM_Admin_Form_Setting {
     // TODO: Should we catch exception, or just let everything die so we know?
     list($kid, $pem) = CRM_Auth0jwt_Utils::fetchNewSigningKey($domain);
 
-    $msg = "setting auth0jwt_auth0_domain to $domain and updating updated id and pem using $domain\n";
-    $msg .= '  auth0jwt_public_signing_key_id = ' . $kid . "\n";
-    $msg .= '  auth0jwt_public_signing_key_pem = ' . $pem . "\n";
-    Civi::log()->info($msg);
+    Civi::log()->info("Fetched new auth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n");
 
     // Now continue with the newly fetched values
     $params['auth0jwt_public_signing_key_id'] = $kid;

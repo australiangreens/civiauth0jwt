@@ -26,7 +26,7 @@
     {if empty($current_auth0jwt_public_signing_key_id)}
     <pre class="auth0jwt-static">Not available yet</pre>
     {else}
-    <pre class="auth0jwt-static">{$current_public_signing_key_id}</pre>
+    <pre class="auth0jwt-static">{$current_auth0jwt_public_signing_key_id}</pre>
     {/if}
   </div>
   <div class="clear"></div>

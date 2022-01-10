@@ -6,40 +6,6 @@
  */
 class CRM_Auth0jwt_Utils {
 
-
-  /**
-   * Function used to monitor changes to auth0jwt_auth0_domain setting.
-   *
-   * Attempts to look up the web key set and update the values of the
-   * auth0jwt_public_signing_key_id and auth0jwt_public_signing_key_cert
-   * settings.
-   *
-   * ! Using this won't work with CRM_Admin_Form_Generic since those values will
-   * ! be immediately overritten
-   *
-   * @link
-   * https://auth0.com/docs/security/tokens/json-web-tokens/json-web-key-sets
-   *
-   * @param string $oldValue, string $newValue, array $metadata
-   * @return null
-   * @access public
-   * @static
-   */
-  // public static function settingsOnChangeAuth0Domain($oldValue, $newValue, $metadata) {
-  //   // TODO: Should we catch exception, or just let everything die so we know?
-  //   list($kid, $pem) = self::fetchNewSigningKey($newValue);
-
-  //   // Update the settings
-  //   \Civi::settings()->set('auth0jwt_public_signing_key_id', $pem);
-  //   \Civi::settings()->set('auth0jwt_public_signing_key_pem', $kid);
-
-  //   $msg = "auth0jwt_auth0_domain setting set to $newValue => updated id and pem using $newValue\n";
-  //   $msg .= '  auth0jwt_public_signing_key_id = ' . \Civi::settings()->get('auth0jwt_public_signing_key_id') . "\n";
-  //   $msg .= '  auth0jwt_public_signing_key_pem = ' . \Civi::settings()->get('auth0jwt_public_signing_key_pem' . "\n");
-  //   \Civi::log()->info($msg);
-  // }
-
-
   /**
    * Try to fetch (and format as appropriate) the latest key id and cert from
    * provided auth0 domain.
@@ -52,17 +18,33 @@ class CRM_Auth0jwt_Utils {
   public static function fetchNewSigningKey($domain) {
     $jwksUri = "https://$domain/.well-known/jwks.json";
 
-    // TODO: This is where we'd make a call
-    // Can either hit the https://$newValue/.well-known/jwks.json and retrieve key[0].kid and
-    // key[0].x5c (adding begin certificate etc to x5c to match requiresment)
-    $x5c = 'fakeretrieved x5c';
-    $pem = "-----BEGIN CERTIFICATE-----\n" . $x5c . "\n-----END CERTIFICATE-----";
-    $kid = 'fakeid';
-    // Or we can can the pem from https://$newValue/pem (or /rawpem if that
-    // causes some encoding issues)
-    //
-    // ...The jwks approach is cleaner since it only requires a single request
+    $client = new GuzzleHttp\Client();
 
-    return [$kid, $pem];
+    $res = $client->get($jwksUri);
+
+    if ($res->getStatusCode() == 200) {
+      $jwks = json_decode($res->getBody(), true);
+
+      // The current key will be the first in the array
+      $key = $jwks['keys'][0];
+
+      // Key id (kid) is simple
+      $kid = $key['kid'];
+
+      // The contents of the pem will be in x5c, we just need to add the first
+      // and last line to each certificate in the chain, as well as make each
+      // line 64 characters long. (This last bit isn't strictly needed for AuthX
+      // to work, but it makes it match rfc7468 as expect.
+      // TODO: If there are multiple should we actually only be using the first?
+      $certs = array_map(function ($x) {
+        return "-----BEGIN CERTIFICATE-----\n" . wordwrap($x, 64, "\n", true) . "\n-----END CERTIFICATE-----";
+      }, $key['x5c']);
+
+      $pem = implode("\n", $certs);
+
+      return [$kid, $pem];
+    }
+
+    throw new \Exception("Unable to retrieve data from $jwksUri");
   }
 }
