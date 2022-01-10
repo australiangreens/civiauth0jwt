@@ -25,19 +25,19 @@ class CRM_Auth0jwt_Utils {
    * @access public
    * @static
    */
-  public static function settingsOnChangeAuth0Domain($oldValue, $newValue, $metadata) {
-    // TODO: Should we catch exception, or just let everything die so we know?
-    list($kid, $pem) = self::fetchNewSigningKey($newValue);
+  // public static function settingsOnChangeAuth0Domain($oldValue, $newValue, $metadata) {
+  //   // TODO: Should we catch exception, or just let everything die so we know?
+  //   list($kid, $pem) = self::fetchNewSigningKey($newValue);
 
-    // Update the settings
-    \Civi::settings()->set('auth0jwt_public_signing_key_id', $pem);
-    \Civi::settings()->set('auth0jwt_public_signing_key_pem', $kid);
+  //   // Update the settings
+  //   \Civi::settings()->set('auth0jwt_public_signing_key_id', $pem);
+  //   \Civi::settings()->set('auth0jwt_public_signing_key_pem', $kid);
 
-    $msg = "auth0jwt_auth0_domain setting set to $newValue => updated id and pem using $newValue\n";
-    $msg .= '  auth0jwt_public_signing_key_id = ' . \Civi::settings()->get('auth0jwt_public_signing_key_id') . "\n";
-    $msg .= '  auth0jwt_public_signing_key_pem = ' . \Civi::settings()->get('auth0jwt_public_signing_key_pem' . "\n");
-    \Civi::log()->info($msg);
-  }
+  //   $msg = "auth0jwt_auth0_domain setting set to $newValue => updated id and pem using $newValue\n";
+  //   $msg .= '  auth0jwt_public_signing_key_id = ' . \Civi::settings()->get('auth0jwt_public_signing_key_id') . "\n";
+  //   $msg .= '  auth0jwt_public_signing_key_pem = ' . \Civi::settings()->get('auth0jwt_public_signing_key_pem' . "\n");
+  //   \Civi::log()->info($msg);
+  // }
 
 
   /**
@@ -49,7 +49,7 @@ class CRM_Auth0jwt_Utils {
    * @return  boolean          [kid, pem]
    *
    */
-  private static function fetchNewSigningKey($domain) {
+  public static function fetchNewSigningKey($domain) {
     $jwksUri = "https://$domain/.well-known/jwks.json";
 
     // TODO: This is where we'd make a call

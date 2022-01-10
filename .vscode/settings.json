@@ -23,6 +23,15 @@
     "editor.formatOnPaste": false,
     "editor.tabSize": 2
   },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
   "intelephense.format.braces": "k&r",
-  "intelephense.environment.phpVersion": "7.3"
+  "intelephense.environment.phpVersion": "7.3",
+
+  "rewrap.wholeComment": false,
+  // "rewrap.wrappingColumn": 80 is the default
+  "rewrap.reformat": true
 }

@@ -2,8 +2,8 @@
 <menu>
   <item>
     <path>civicrm/admin/setting/auth0jwt</path>
-    <page_callback>CRM_Auth0jwt_Form_Settings</page_callback>
-    <title>Auth0jwt settings</title>
+    <page_callback>CRM_Admin_Form_Generic</page_callback>
+    <title>Auth0jwt Settings</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
 </menu>
