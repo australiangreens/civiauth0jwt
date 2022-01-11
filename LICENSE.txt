@@ -1,4 +1,4 @@
-Package: au.org.greens.auth0jwt
+Package: auth0jwt
 Copyright (C) 2022, FIXME <FIXME>
 Licensed under the GNU Affero Public License 3.0 (below).
 

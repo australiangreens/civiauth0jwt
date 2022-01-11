@@ -8,7 +8,7 @@
  */
 class CRM_Auth0jwt_ExtensionUtil {
   const SHORT_NAME = 'auth0jwt';
-  const LONG_NAME = 'au.org.greens.auth0jwt';
+  const LONG_NAME = 'auth0jwt';
   const CLASS_PREFIX = 'CRM_Auth0jwt';
 
   /**
@@ -74,7 +74,6 @@ class CRM_Auth0jwt_ExtensionUtil {
   public static function findClass($suffix) {
     return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
   }
-
 }
 
 use CRM_Auth0jwt_ExtensionUtil as E;
@@ -91,15 +90,14 @@ function _auth0jwt_civix_civicrm_config(&$config = NULL) {
   }
   $configured = TRUE;
 
-  $template =& CRM_Core_Smarty::singleton();
+  $template = &CRM_Core_Smarty::singleton();
 
   $extRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR;
   $extDir = $extRoot . 'templates';
 
   if (is_array($template->template_dir)) {
     array_unshift($template->template_dir, $extDir);
-  }
-  else {
+  } else {
     $template->template_dir = [$extDir, $template->template_dir];
   }
 
@@ -211,8 +209,7 @@ function _auth0jwt_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
 function _auth0jwt_civix_upgrader() {
   if (!file_exists(__DIR__ . '/CRM/Auth0jwt/Upgrader.php')) {
     return NULL;
-  }
-  else {
+  } else {
     return CRM_Auth0jwt_Upgrader_Base::instance();
   }
 }
@@ -368,8 +365,7 @@ function _auth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
       ], $item),
     ];
     return TRUE;
-  }
-  else {
+  } else {
     // Find an recurse into the next level down
     $found = FALSE;
     $path = explode('/', $path);
@@ -401,7 +397,7 @@ function _auth0jwt_civix_navigationMenu(&$nodes) {
  */
 function _auth0jwt_civix_fixNavigationMenu(&$nodes) {
   $maxNavID = 1;
-  array_walk_recursive($nodes, function($item, $key) use (&$maxNavID) {
+  array_walk_recursive($nodes, function ($item, $key) use (&$maxNavID) {
     if ($key === 'navID') {
       $maxNavID = max($maxNavID, $item);
     }

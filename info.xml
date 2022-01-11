@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<extension key="au.org.greens.auth0jwt" type="module">
+<extension key="auth0jwt" type="module">
   <file>auth0jwt</file>
   <name>Auth0jwt</name>
   <description>CiviCRM extension to allow authorising api calls using JWTs signed by Auth0</description>

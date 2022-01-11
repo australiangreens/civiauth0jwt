@@ -5,8 +5,6 @@ use CRM_Auth0jwt_ExtensionUtil as E;
  * Settings metadata file
  */
 
-// Note: we can't use au.org.greens.auth0jwt:signing_key, since settings can
-// have neither ':' not '.' characters
 return [
   'auth0jwt_auth0_domain' => [
     'name' => 'auth0jwt_auth0_domain',

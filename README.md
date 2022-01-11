@@ -1,8 +1,8 @@
-# au.org.greens.auth0jwt
+# auth0jwt
 
 ![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it.*)
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
@@ -22,7 +22,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl au.org.greens.auth0jwt@https://github.com/FIXME/au.org.greens.auth0jwt/archive/master.zip
+cv dl auth0jwt@https://github.com/australiangreens/auth0jwt/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -31,14 +31,14 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/au.org.greens.auth0jwt.git
+git clone https://github.com/australiangreens/auth0jwt.git
 cv en auth0jwt
 ```
 
 ## Getting Started
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+(*FIXME: Where would a new user navigate to get started? What changes would they see?*)
 
 ## Known Issues
 
-(* FIXME *)
+(*FIXME*)
