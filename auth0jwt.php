@@ -16,13 +16,19 @@ function auth0jwt_civicrm_crypto($registry) {
     !empty($auth0SigningKeyId = \Civi::settings()->get('auth0jwt_public_signing_key_id'))
     && !empty($auth0SigningKeyPem = \Civi::settings()->get('auth0jwt_public_signing_key_pem'))
   ) {
+    Civi::log()->debug("Here");
     // Despite the name, this works just fine with public keys
     $registry->addSymmetricKey([
       'id' => $auth0SigningKeyId,
       'key' => $auth0SigningKeyPem,
       'suite' => 'jwt-rs256',
       'tags' => ['SIGN'],
-      // TODO: Is using -1 this still the best approach?
+
+      // By default during install CiviCRM will populate CIVICRM_SIGN_KEYS with
+      // a new signing key with suite of jwt-hs256. That will be added to the
+      // registry with a weight of 0, so we use a weight of -1 here to ensure
+      // our signing key is used instead by the CryptoJwt class called by AuthX.
+      // TODO: Is using -1 still the best approach?
       'weight' => -1,
     ]);
   }
