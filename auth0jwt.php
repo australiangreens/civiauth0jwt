@@ -16,7 +16,7 @@ function auth0jwt_civicrm_crypto($registry) {
     !empty($auth0SigningKeyId = \Civi::settings()->get('auth0jwt_public_signing_key_id'))
     && !empty($auth0SigningKeyPem = \Civi::settings()->get('auth0jwt_public_signing_key_pem'))
   ) {
-    Civi::log()->debug("Here");
+
     // Despite the name, this works just fine with public keys
     $registry->addSymmetricKey([
       'id' => $auth0SigningKeyId,
@@ -34,6 +34,7 @@ function auth0jwt_civicrm_crypto($registry) {
   }
 }
 
+
 /**
  * Implements hook_civicrm_config().
  *
@@ -41,9 +42,11 @@ function auth0jwt_civicrm_crypto($registry) {
  */
 function auth0jwt_civicrm_config(&$config) {
   _auth0jwt_civix_civicrm_config($config);
-  // This is where we'll add symfony listeners if we need to
-  // E.g. Civi::service('dispatcher')->addListener('hook_civicrm_post', 'auth0jwt_symfony_civicrm_post', -99);
+
+  \Civi::service('dispatcher')->addListener('civi.authx.decodedjwtclaimscheck', ['CRM_Auth0jwt_Listen', 'decodedJwtClaimsCheck']);
 }
+
+
 
 /**
  * Implements hook_civicrm_xmlMenu().
