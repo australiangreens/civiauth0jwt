@@ -6,10 +6,10 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_Auth0jwt_ExtensionUtil {
-  const SHORT_NAME = 'auth0jwt';
-  const LONG_NAME = 'auth0jwt';
-  const CLASS_PREFIX = 'CRM_Auth0jwt';
+class CRM_CiviAuth0jwt_ExtensionUtil {
+  const SHORT_NAME = 'civiauth0jwt';
+  const LONG_NAME = 'civiauth0jwt';
+  const CLASS_PREFIX = 'CRM_CiviAuth0Jwt';
 
   /**
    * Translate a string using the extension's domain.
@@ -76,14 +76,14 @@ class CRM_Auth0jwt_ExtensionUtil {
   }
 }
 
-use CRM_Auth0jwt_ExtensionUtil as E;
+use CRM_CiviAuth0Jwt_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
-function _auth0jwt_civix_civicrm_config(&$config = NULL) {
+function _civiauth0jwt_civix_civicrm_config(&$config = NULL) {
   static $configured = FALSE;
   if ($configured) {
     return;
@@ -112,8 +112,8 @@ function _auth0jwt_civix_civicrm_config(&$config = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function _auth0jwt_civix_civicrm_xmlMenu(&$files) {
-  foreach (_auth0jwt_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
+function _civiauth0jwt_civix_civicrm_xmlMenu(&$files) {
+  foreach (_civiauth0jwt_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
     $files[] = $file;
   }
 }
@@ -123,9 +123,9 @@ function _auth0jwt_civix_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function _auth0jwt_civix_civicrm_install() {
-  _auth0jwt_civix_civicrm_config();
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_install() {
+  _civiauth0jwt_civix_civicrm_config();
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     $upgrader->onInstall();
   }
 }
@@ -135,9 +135,9 @@ function _auth0jwt_civix_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function _auth0jwt_civix_civicrm_postInstall() {
-  _auth0jwt_civix_civicrm_config();
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_postInstall() {
+  _civiauth0jwt_civix_civicrm_config();
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     if (is_callable([$upgrader, 'onPostInstall'])) {
       $upgrader->onPostInstall();
     }
@@ -149,9 +149,9 @@ function _auth0jwt_civix_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function _auth0jwt_civix_civicrm_uninstall() {
-  _auth0jwt_civix_civicrm_config();
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_uninstall() {
+  _civiauth0jwt_civix_civicrm_config();
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     $upgrader->onUninstall();
   }
 }
@@ -161,9 +161,9 @@ function _auth0jwt_civix_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function _auth0jwt_civix_civicrm_enable() {
-  _auth0jwt_civix_civicrm_config();
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_enable() {
+  _civiauth0jwt_civix_civicrm_config();
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     if (is_callable([$upgrader, 'onEnable'])) {
       $upgrader->onEnable();
     }
@@ -176,9 +176,9 @@ function _auth0jwt_civix_civicrm_enable() {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  * @return mixed
  */
-function _auth0jwt_civix_civicrm_disable() {
-  _auth0jwt_civix_civicrm_config();
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_disable() {
+  _civiauth0jwt_civix_civicrm_config();
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     if (is_callable([$upgrader, 'onDisable'])) {
       $upgrader->onDisable();
     }
@@ -197,8 +197,8 @@ function _auth0jwt_civix_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function _auth0jwt_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  if ($upgrader = _auth0jwt_civix_upgrader()) {
+function _civiauth0jwt_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  if ($upgrader = _civiauth0jwt_civix_upgrader()) {
     return $upgrader->onUpgrade($op, $queue);
   }
 }
@@ -206,7 +206,7 @@ function _auth0jwt_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
 /**
  * @return CRM_Auth0jwt_Upgrader
  */
-function _auth0jwt_civix_upgrader() {
+function _civiauth0jwt_civix_upgrader() {
   if (!file_exists(__DIR__ . '/CRM/Auth0jwt/Upgrader.php')) {
     return NULL;
   } else {
@@ -226,7 +226,7 @@ function _auth0jwt_civix_upgrader() {
  *
  * @return array
  */
-function _auth0jwt_civix_find_files($dir, $pattern) {
+function _civiauth0jwt_civix_find_files($dir, $pattern) {
   return CRM_Utils_File::findFiles($dir, $pattern);
 }
 
@@ -237,8 +237,8 @@ function _auth0jwt_civix_find_files($dir, $pattern) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function _auth0jwt_civix_civicrm_managed(&$entities) {
-  $mgdFiles = _auth0jwt_civix_find_files(__DIR__, '*.mgd.php');
+function _civiauth0jwt_civix_civicrm_managed(&$entities) {
+  $mgdFiles = _civiauth0jwt_civix_find_files(__DIR__, '*.mgd.php');
   sort($mgdFiles);
   foreach ($mgdFiles as $file) {
     $es = include $file;
@@ -263,12 +263,12 @@ function _auth0jwt_civix_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function _auth0jwt_civix_civicrm_caseTypes(&$caseTypes) {
+function _civiauth0jwt_civix_civicrm_caseTypes(&$caseTypes) {
   if (!is_dir(__DIR__ . '/xml/case')) {
     return;
   }
 
-  foreach (_auth0jwt_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
+  foreach (_civiauth0jwt_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
     $name = preg_replace('/\.xml$/', '', basename($file));
     if ($name != CRM_Case_XMLProcessor::mungeCaseType($name)) {
       $errorMessage = sprintf("Case-type file name is malformed (%s vs %s)", $name, CRM_Case_XMLProcessor::mungeCaseType($name));
@@ -291,12 +291,12 @@ function _auth0jwt_civix_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function _auth0jwt_civix_civicrm_angularModules(&$angularModules) {
+function _civiauth0jwt_civix_civicrm_angularModules(&$angularModules) {
   if (!is_dir(__DIR__ . '/ang')) {
     return;
   }
 
-  $files = _auth0jwt_civix_glob(__DIR__ . '/ang/*.ang.php');
+  $files = _civiauth0jwt_civix_glob(__DIR__ . '/ang/*.ang.php');
   foreach ($files as $file) {
     $name = preg_replace(':\.ang\.php$:', '', basename($file));
     $module = include $file;
@@ -312,8 +312,8 @@ function _auth0jwt_civix_civicrm_angularModules(&$angularModules) {
  *
  * Find any and return any files matching "*.theme.php"
  */
-function _auth0jwt_civix_civicrm_themes(&$themes) {
-  $files = _auth0jwt_civix_glob(__DIR__ . '/*.theme.php');
+function _civiauth0jwt_civix_civicrm_themes(&$themes) {
+  $files = _civiauth0jwt_civix_glob(__DIR__ . '/*.theme.php');
   foreach ($files as $file) {
     $themeMeta = include $file;
     if (empty($themeMeta['name'])) {
@@ -339,7 +339,7 @@ function _auth0jwt_civix_civicrm_themes(&$themes) {
  *
  * @return array
  */
-function _auth0jwt_civix_glob($pattern) {
+function _civiauth0jwt_civix_glob($pattern) {
   $result = glob($pattern);
   return is_array($result) ? $result : [];
 }
@@ -355,7 +355,7 @@ function _auth0jwt_civix_glob($pattern) {
  *
  * @return bool
  */
-function _auth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
+function _civiauth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
   // If we are done going down the path, insert menu
   if (empty($path)) {
     $menu[] = [
@@ -375,7 +375,7 @@ function _auth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
         if (!isset($entry['child'])) {
           $entry['child'] = [];
         }
-        $found = _auth0jwt_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
+        $found = _civiauth0jwt_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
       }
     }
     return $found;
@@ -385,9 +385,9 @@ function _auth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
 /**
  * (Delegated) Implements hook_civicrm_navigationMenu().
  */
-function _auth0jwt_civix_navigationMenu(&$nodes) {
+function _civiauth0jwt_civix_navigationMenu(&$nodes) {
   if (!is_callable(['CRM_Core_BAO_Navigation', 'fixNavigationMenu'])) {
-    _auth0jwt_civix_fixNavigationMenu($nodes);
+    _civiauth0jwt_civix_fixNavigationMenu($nodes);
   }
 }
 
@@ -395,17 +395,17 @@ function _auth0jwt_civix_navigationMenu(&$nodes) {
  * Given a navigation menu, generate navIDs for any items which are
  * missing them.
  */
-function _auth0jwt_civix_fixNavigationMenu(&$nodes) {
+function _civiauth0jwt_civix_fixNavigationMenu(&$nodes) {
   $maxNavID = 1;
   array_walk_recursive($nodes, function ($item, $key) use (&$maxNavID) {
     if ($key === 'navID') {
       $maxNavID = max($maxNavID, $item);
     }
   });
-  _auth0jwt_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
+  _civiauth0jwt_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
 }
 
-function _auth0jwt_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) {
+function _civiauth0jwt_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) {
   $origKeys = array_keys($nodes);
   foreach ($origKeys as $origKey) {
     if (!isset($nodes[$origKey]['attributes']['parentID']) && $parentID !== NULL) {
@@ -420,7 +420,7 @@ function _auth0jwt_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) 
       $origKey = $newKey;
     }
     if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
-      _auth0jwt_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
+      _civiauth0jwt_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
     }
   }
 }
@@ -430,7 +430,7 @@ function _auth0jwt_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) 
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function _auth0jwt_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+function _civiauth0jwt_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   $settingsDir = __DIR__ . DIRECTORY_SEPARATOR . 'settings';
   if (!in_array($settingsDir, $metaDataFolders) && is_dir($settingsDir)) {
     $metaDataFolders[] = $settingsDir;
@@ -444,6 +444,6 @@ function _auth0jwt_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) 
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function _auth0jwt_civix_civicrm_entityTypes(&$entityTypes) {
+function _civiauth0jwt_civix_civicrm_entityTypes(&$entityTypes) {
   $entityTypes = array_merge($entityTypes, []);
 }

@@ -14,8 +14,8 @@
 </p>
 
 <div class="crm-section">
-  <div class="label">{$form.auth0jwt_auth0_domain.label}</div>
-  <div class="content">{$form.auth0jwt_auth0_domain.html}</div>
+  <div class="label">{$form.civiauth0jwt_auth0_domain.label}</div>
+  <div class="content">{$form.civiauth0jwt_auth0_domain.html}</div>
   <div class="clear"></div>
 </div>
 
@@ -23,10 +23,10 @@
 <div class="crm-section">
   <div class="label">Current key id</div>
   <div class="content">
-    {if empty($current_auth0jwt_public_signing_key_id)}
-    <pre class="auth0jwt-static">Not available yet</pre>
+    {if empty($current_civiauth0jwt_public_signing_key_id)}
+    <pre class="civiauth0jwt-static">Not available yet</pre>
     {else}
-    <pre class="auth0jwt-static">{$current_auth0jwt_public_signing_key_id}</pre>
+    <pre class="civiauth0jwt-static">{$current_civiauth0jwt_public_signing_key_id}</pre>
     {/if}
   </div>
   <div class="clear"></div>
@@ -35,10 +35,10 @@
 <div class="crm-section">
   <div class="label">Current pem</div>
   <div class="content">
-    {if empty($current_auth0jwt_public_signing_key_pem)}
-    <pre class="auth0jwt-static">Not available yet</pre>
+    {if empty($current_civiauth0jwt_public_signing_key_pem)}
+    <pre class="civiauth0jwt-static">Not available yet</pre>
     {else}
-    <pre class="auth0jwt-static">{$current_auth0jwt_public_signing_key_pem}</pre>
+    <pre class="civiauth0jwt-static">{$current_civiauth0jwt_public_signing_key_pem}</pre>
     {/if}
   </div>
   <div class="clear"></div>

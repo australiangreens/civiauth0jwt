@@ -1,8 +1,8 @@
 <?php
 
-require_once 'auth0jwt.civix.php';
+require_once 'civiauth0jwt.civix.php';
 // phpcs:disable
-use CRM_Auth0jwt_ExtensionUtil as E;
+use CRM_CiviAuth0Jwt_ExtensionUtil as E;
 // phpcs:enable
 
 
@@ -11,10 +11,10 @@ use CRM_Auth0jwt_ExtensionUtil as E;
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_crypto/
  */
-function auth0jwt_civicrm_crypto($registry) {
+function civiauth0jwt_civicrm_crypto($registry) {
   if (
-    !empty($auth0SigningKeyId = \Civi::settings()->get('auth0jwt_public_signing_key_id'))
-    && !empty($auth0SigningKeyPem = \Civi::settings()->get('auth0jwt_public_signing_key_pem'))
+    !empty($auth0SigningKeyId = \Civi::settings()->get('civiauth0jwt_public_signing_key_id'))
+    && !empty($auth0SigningKeyPem = \Civi::settings()->get('civiauth0jwt_public_signing_key_pem'))
   ) {
 
     // Despite the name, this works just fine with public keys
@@ -40,11 +40,11 @@ function auth0jwt_civicrm_crypto($registry) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function auth0jwt_civicrm_config(&$config) {
-  _auth0jwt_civix_civicrm_config($config);
+function civiauth0jwt_civicrm_config(&$config) {
+  _civiauth0jwt_civix_civicrm_config($config);
 
   // Listen for the claims check event so we can override the handling of claims
-  \Civi::service('dispatcher')->addListener('civi.authx.jwtclaimscheck', ['Civi\Auth0jwt\Listen', 'jwtClaimsCheck']);
+  \Civi::service('dispatcher')->addListener('civi.authx.jwtclaimscheck', ['Civi\CiviAuth0Jwt\Listen', 'jwtClaimsCheck']);
 }
 
 
@@ -54,8 +54,8 @@ function auth0jwt_civicrm_config(&$config) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function auth0jwt_civicrm_xmlMenu(&$files) {
-  _auth0jwt_civix_civicrm_xmlMenu($files);
+function civiauth0jwt_civicrm_xmlMenu(&$files) {
+  _civiauth0jwt_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -63,8 +63,8 @@ function auth0jwt_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function auth0jwt_civicrm_install() {
-  _auth0jwt_civix_civicrm_install();
+function civiauth0jwt_civicrm_install() {
+  _civiauth0jwt_civix_civicrm_install();
 }
 
 /**
@@ -72,8 +72,8 @@ function auth0jwt_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function auth0jwt_civicrm_postInstall() {
-  _auth0jwt_civix_civicrm_postInstall();
+function civiauth0jwt_civicrm_postInstall() {
+  _civiauth0jwt_civix_civicrm_postInstall();
 }
 
 /**
@@ -81,8 +81,8 @@ function auth0jwt_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function auth0jwt_civicrm_uninstall() {
-  _auth0jwt_civix_civicrm_uninstall();
+function civiauth0jwt_civicrm_uninstall() {
+  _civiauth0jwt_civix_civicrm_uninstall();
 }
 
 /**
@@ -90,8 +90,8 @@ function auth0jwt_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function auth0jwt_civicrm_enable() {
-  _auth0jwt_civix_civicrm_enable();
+function civiauth0jwt_civicrm_enable() {
+  _civiauth0jwt_civix_civicrm_enable();
 }
 
 /**
@@ -99,8 +99,8 @@ function auth0jwt_civicrm_enable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  */
-function auth0jwt_civicrm_disable() {
-  _auth0jwt_civix_civicrm_disable();
+function civiauth0jwt_civicrm_disable() {
+  _civiauth0jwt_civix_civicrm_disable();
 }
 
 /**
@@ -108,8 +108,8 @@ function auth0jwt_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function auth0jwt_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _auth0jwt_civix_civicrm_upgrade($op, $queue);
+function civiauth0jwt_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  return _civiauth0jwt_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -120,8 +120,8 @@ function auth0jwt_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function auth0jwt_civicrm_managed(&$entities) {
-  _auth0jwt_civix_civicrm_managed($entities);
+function civiauth0jwt_civicrm_managed(&$entities) {
+  _civiauth0jwt_civix_civicrm_managed($entities);
 }
 
 /**
@@ -133,8 +133,8 @@ function auth0jwt_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function auth0jwt_civicrm_caseTypes(&$caseTypes) {
-  _auth0jwt_civix_civicrm_caseTypes($caseTypes);
+function civiauth0jwt_civicrm_caseTypes(&$caseTypes) {
+  _civiauth0jwt_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -147,8 +147,8 @@ function auth0jwt_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function auth0jwt_civicrm_angularModules(&$angularModules) {
-  _auth0jwt_civix_civicrm_angularModules($angularModules);
+function civiauth0jwt_civicrm_angularModules(&$angularModules) {
+  _civiauth0jwt_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -156,8 +156,8 @@ function auth0jwt_civicrm_angularModules(&$angularModules) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function auth0jwt_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _auth0jwt_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function civiauth0jwt_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+  _civiauth0jwt_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -167,15 +167,15 @@ function auth0jwt_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function auth0jwt_civicrm_entityTypes(&$entityTypes) {
-  _auth0jwt_civix_civicrm_entityTypes($entityTypes);
+function civiauth0jwt_civicrm_entityTypes(&$entityTypes) {
+  _civiauth0jwt_civix_civicrm_entityTypes($entityTypes);
 }
 
 /**
  * Implements hook_civicrm_themes().
  */
-function auth0jwt_civicrm_themes(&$themes) {
-  _auth0jwt_civix_civicrm_themes($themes);
+function civiauth0jwt_civicrm_themes(&$themes) {
+  _civiauth0jwt_civix_civicrm_themes($themes);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
@@ -185,7 +185,7 @@ function auth0jwt_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
  */
-//function auth0jwt_civicrm_preProcess($formName, &$form) {
+//function civiauth0jwt_civicrm_preProcess($formName, &$form) {
 //
 //}
 
@@ -194,14 +194,14 @@ function auth0jwt_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-function auth0jwt_civicrm_navigationMenu(&$menu) {
-  _auth0jwt_civix_insert_navigation_menu($menu, 'Administer', array(
-    'label' => E::ts('Auth0jwt'),
-    'name' => 'auth0jwt_settings',
-    'url' => 'civicrm/admin/setting/auth0jwt',
+function civiauth0jwt_civicrm_navigationMenu(&$menu) {
+  _civiauth0jwt_civix_insert_navigation_menu($menu, 'Administer', array(
+    'label' => E::ts('CiviAuth0Jwt'),
+    'name' => 'civiauth0jwt_settings',
+    'url' => 'civicrm/admin/setting/civiauth0jwt',
     'permission' => 'administer CiviCRM',
     'operator' => 'OR',
     'separator' => 0,
   ));
-  _auth0jwt_civix_navigationMenu($menu);
+  _civiauth0jwt_civix_navigationMenu($menu);
 }

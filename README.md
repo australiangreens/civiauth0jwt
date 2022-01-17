@@ -1,4 +1,4 @@
-# auth0jwt
+# CiviAuth0Jwt
 
 ![Screenshot](/images/screenshot.png)
 
@@ -56,7 +56,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl auth0jwt@https://github.com/australiangreens/auth0jwt/archive/main.zip
+cv dl civiauth0jwt@https://github.com/australiangreens/civiauth0jwt/archive/main.zip
 ```
 
 ## Installation (CLI, Git)
@@ -66,13 +66,13 @@ repo for this extension and install it with the command-line tool
 [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/australiangreens/auth0jwt.git
-cv en auth0jwt
+git clone https://github.com/australiangreens/civiauth0jwt.git
+cv en civiauth0jwt
 ```
 
 ## Getting Started
 
-1. Visit `<siteroot>/civicrm/admin/setting/auth0jwt`.
+1. Visit `<siteroot>/civicrm/admin/setting/civiauth0jwt`.
 2. Put the auth0 domain of your tenant, without including the scheme. This could
    be an auth0 subdomain (yourtenant.auth0.com) or your own subdomain
    (auth.yourdomain.com). Note this will be the same as the `iss` claim in your

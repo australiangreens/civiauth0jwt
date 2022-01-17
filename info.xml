@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<extension key="auth0jwt" type="module">
-  <file>auth0jwt</file>
-  <name>Auth0jwt</name>
+<extension key="civiauth0jwt" type="module">
+  <file>civiauth0jwt</file>
+  <name>CiviAuth0Jwt</name>
   <description>CiviCRM extension to allow authorising api calls using JWTs signed by Auth0</description>
   <license>AGPL-3.0</license>
   <maintainer>
@@ -9,13 +9,13 @@
     <email>anthony@unfinishedteleporter.com</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">https://github.com/australiangreens/auth0jwt</url>
-    <url desc="Documentation">https://github.com/australiangreens/auth0jwt</url>
-    <url desc="Support">https://github.com/australiangreens/auth0jwt</url>
+    <url desc="Main Extension Page">https://github.com/australiangreens/civiauth0jwt</url>
+    <url desc="Documentation">https://github.com/australiangreens/civiauth0jwt</url>
+    <url desc="Support">https://github.com/australiangreens/civiauth0jwt</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
   <releaseDate>2022-01-07</releaseDate>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <develStage>alpha</develStage>
   <compatibility>
     <ver>5.0</ver>
@@ -25,7 +25,7 @@
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
   <civix>
-    <namespace>CRM/Auth0jwt</namespace>
+    <namespace>CRM/CiviAuth0Jwt</namespace>
   </civix>
   <requires>
     <ext>authx</ext>

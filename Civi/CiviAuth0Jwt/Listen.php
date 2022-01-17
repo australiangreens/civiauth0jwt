@@ -1,6 +1,6 @@
 <?php
 
-namespace Civi\Auth0jwt;
+namespace Civi\CiviAuth0Jwt;
 
 /**
  * Listen - class with listener definitions

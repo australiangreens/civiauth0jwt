@@ -1,0 +1,14 @@
+{
+  "name": "australian_greens/civiauth0jwt",
+  "description": "Australian Greens CiviCRM extension to allow authorising api calls using JWTs signed by Auth0",
+  "type": "civicrm-extension",
+  "authors": [
+    {
+      "name": "Anthony Blond",
+      "email": "anthony.blond@greens.org.au"
+    }
+  ],
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}

@@ -1,14 +1,14 @@
 <?php
 
-use CRM_Auth0jwt_ExtensionUtil as E;
+use CRM_CiviAuth0Jwt_ExtensionUtil as E;
 /*
  * Settings metadata file
  */
 
 return [
-  'auth0jwt_auth0_domain' => [
-    'name' => 'auth0jwt_auth0_domain',
-    'filter' => 'auth0jwt',
+  'civiauth0jwt_auth0_domain' => [
+    'name' => 'civiauth0jwt_auth0_domain',
+    'filter' => 'civiauth0jwt',
     'type' => 'String',
     'add' => '5.31',
     'is_domain' => 1,
@@ -21,14 +21,14 @@ return [
       'size' => 60,
       'spellcheck' => 'false', // It is enumerated, not boolean
     ],
-    'settings_pages' => ['auth0jwt' => ['weight' => 10]],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
 
-  // auth0jwt_public_signing_key_id and auth0jwt_public_signing_key_pem
-  // are set automatically, fetched from the auth0jwt_auth0_domain
-  'auth0jwt_public_signing_key_id' => [
-    'name' => 'auth0jwt_public_signing_key_id',
-    'filter' => 'auth0jwt',
+  // civiauth0jwt_public_signing_key_id and civiauth0jwt_public_signing_key_pem
+  // are set automatically, fetched from the civiauth0jwt_auth0_domain
+  'civiauth0jwt_public_signing_key_id' => [
+    'name' => 'civiauth0jwt_public_signing_key_id',
+    'filter' => 'civiauth0jwt',
     'type' => 'String',
     'add' => '5.31',
     'is_domain' => 1,
@@ -37,11 +37,11 @@ return [
     'title' => E::ts('Signing key id'),
     'default' => '',
     'html_type' => 'text',
-    'settings_pages' => ['auth0jwt' => ['weight' => 10]],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
-  'auth0jwt_public_signing_key_pem' => [
-    'name' => 'auth0jwt_public_signing_key_pem',
-    'filter' => 'auth0jwt',
+  'civiauth0jwt_public_signing_key_pem' => [
+    'name' => 'civiauth0jwt_public_signing_key_pem',
+    'filter' => 'civiauth0jwt',
     'type' => 'String',
     'add' => '5.31',
     'is_domain' => 1,
@@ -50,6 +50,6 @@ return [
     'title' => E::ts('Signing key pem'),
     'default' => '',
     'html_type' => 'text',
-    'settings_pages' => ['auth0jwt' => ['weight' => 10]],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
 ];
