@@ -1,10 +1,14 @@
 <?php
 
+namespace Civi\Auth0jwt;
+
+use GuzzleHttp\Client;
+
 /**
  * Utils - class with generic functions
  *
  */
-class CRM_Auth0jwt_Utils {
+class Util {
 
   /**
    * Try to fetch (and format as appropriate) the latest key id and cert from
@@ -12,13 +16,13 @@ class CRM_Auth0jwt_Utils {
    *
    * @param   string  $domain  Auth0 domain
    *
-   * @return  boolean          [kid, pem]
+   * @return  array          [kid, pem]
    *
    */
-  public static function fetchNewSigningKey($domain) {
+  public static function fetchNewSigningKey($domain): array {
     $jwksUri = "https://$domain/.well-known/jwks.json";
 
-    $client = new GuzzleHttp\Client();
+    $client = new Client();
 
     $res = $client->get($jwksUri);
 

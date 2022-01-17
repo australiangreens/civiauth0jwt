@@ -1,5 +1,7 @@
 <?php
 
+use Civi\Auth0jwt\Util;
+
 /**
  * Form controller class
  *
@@ -34,7 +36,7 @@ class CRM_Auth0jwt_Form_Settings extends CRM_Admin_Form_Setting {
     $domain = $params['auth0jwt_auth0_domain'];
 
     // TODO: Should we catch exception, or just let everything die so we know?
-    list($kid, $pem) = CRM_Auth0jwt_Utils::fetchNewSigningKey($domain);
+    list($kid, $pem) = Util::fetchNewSigningKey($domain);
 
     Civi::log()->info("Fetched new auth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n");
 

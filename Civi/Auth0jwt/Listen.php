@@ -1,17 +1,20 @@
 <?php
 
+namespace Civi\Auth0jwt;
+
 /**
  * Listen - class with listener definitions
  *
  */
-class CRM_Auth0jwt_Listen {
-
-  public static function decodedJwtClaimsCheck(\Civi\Authx\DecodedJwtClaimsCheckEvent $e) {
+class Listen {
+  public static function jwtClaimsCheck(\Civi\Authx\JwtClaimsCheckEvent $e) {
     $claims = $e->claims;
-    \Civi::log()->debug('decodedJwtClaimsCheck() called');
+    \Civi::log()->debug('jwtClaimsCheck() called');
     \Civi::log()->debug(json_encode($claims));
 
-    // For now, we just accept the scope, whether or not it contains 'authx'.
+    // TODO: Temporary
+    // For now, we just accept the scope, whether or not it contains 'authx',
+    // this might not be necessary later
     $e->acceptScope();
 
     // Parse auth0's

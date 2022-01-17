@@ -43,7 +43,8 @@ function auth0jwt_civicrm_crypto($registry) {
 function auth0jwt_civicrm_config(&$config) {
   _auth0jwt_civix_civicrm_config($config);
 
-  \Civi::service('dispatcher')->addListener('civi.authx.decodedjwtclaimscheck', ['CRM_Auth0jwt_Listen', 'decodedJwtClaimsCheck']);
+  // Listen for the claims check event so we can override the handling of claims
+  \Civi::service('dispatcher')->addListener('civi.authx.jwtclaimscheck', ['Civi\Auth0jwt\Listen', 'jwtClaimsCheck']);
 }
 
 
