@@ -21,22 +21,24 @@ class Listen {
 
       // This is where we'd do a lookup
       // For now just pretend.
-
-      // Pick randomly between one which has an associated user and one which does not
-      if (rand(0, 1) == 0) {
-        // TODO!
-        $contactId = null; // has an uid
+      $forceCid = \Civi::settings()->get('civiauth0jwt_force_cid');
+      if (empty($forceCid)) {
+        $NOTIMPLEMENTED = true;
       } else {
-        $contactId = null; // no matching uid
+        $contactId = $forceCid;
       }
-      $e->rejectSub("Not implemented");
-
 
       if ($contactId) {
-        \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id. Mapped to contactId = $contactId");
+        \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id. Mapped to contactId = $contactId" . (empty($forceCid) ? '' : ' [set by civiauth0jwt_force_cid]'));
         $e->acceptSub($contactId);
       } else {
-        $e->rejectSub("Parsed auth0id = $auth0Id, but unable to map to a contactId");
+        if ($NOTIMPLEMENTED) {
+          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but Non-forced cid not implemented yet");
+          $e->rejectSub("Non-forced cid not implemented yet");
+        } else {
+          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but unable to map to a contactId");
+          $e->rejectSub("Parsed auth0id = $auth0Id, but unable to map to a contactId");
+        }
       }
     } else {
       // Lets say we instead didn't find it. We have the choice over either

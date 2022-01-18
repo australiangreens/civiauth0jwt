@@ -42,7 +42,7 @@ return [
   'civiauth0jwt_public_signing_key_pem' => [
     'name' => 'civiauth0jwt_public_signing_key_pem',
     'filter' => 'civiauth0jwt',
-    'type' => 'String',
+    'type' => 'Integer',
     'add' => '5.31',
     'is_domain' => 1,
     'is_contact' => 0,
@@ -50,6 +50,24 @@ return [
     'title' => E::ts('Signing key pem'),
     'default' => '',
     'html_type' => 'text',
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
+  ],
+
+  'civiauth0jwt_force_cid' => [
+    'name' => 'civiauth0jwt_force_cid',
+    'filter' => 'civiauth0jwt',
+    'type' => 'String',
+    'add' => '5.31',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => E::ts('(FOR DEBUGGING) If set, this will be used as the resolved contactId of every request, regardless of the auth0 id'),
+    'title' => E::ts('Force contact id'),
+    'default' => '',
+    'html_type' => 'text',
+    'html_attributes' => [
+      'size' => 60,
+      'spellcheck' => 'false', // It is enumerated, not boolean
+    ],
     'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
 ];

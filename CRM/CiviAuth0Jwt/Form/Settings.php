@@ -16,6 +16,7 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
       'font-family: monospace',
       'border: 1px solid silver',
       'width: 64ch',
+      'margin-bottom: 1px',
     ];
 
     Civi::resources()->addStyle('pre.civiauth0jwt-static {' . implode(';', $styleStrs) . '}');
