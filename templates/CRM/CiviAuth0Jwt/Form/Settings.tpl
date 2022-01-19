@@ -6,10 +6,8 @@
 
 <p>
   <em>
-    When the auth0 domain has been saved, the key id and key will be updated
-    using data from <code>https://&lt;domain&gt;/.well-known/jwks.json</code>.
-    Saving without changing will force an update in case there has been a key
-    rotation.
+    When the auth0 domain has been saved, the key id and key will be retrieved from the auth0 tenant
+    defined by the domain. Saving without changing will force an update (to handle key rotation).
   </em>
 </p>
 
