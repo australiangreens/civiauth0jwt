@@ -21,23 +21,23 @@ class Listen {
 
       // This is where we'd do a lookup
       // For now just pretend.
-      $forceCid = \Civi::settings()->get('civiauth0jwt_force_cid');
-      if (empty($forceCid)) {
+      $forceUserId = \Civi::settings()->get('civiauth0jwt_force_user_id');
+      if (empty($forceUserId)) {
         $NOTIMPLEMENTED = true;
       } else {
-        $contactId = $forceCid;
+        $userId = $forceUserId;
       }
 
-      if ($contactId) {
-        \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id. Mapped to contactId = $contactId" . (empty($forceCid) ? '' : ' [set by civiauth0jwt_force_cid]'));
-        $e->acceptSub($contactId);
+      if ($userId) {
+        \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id. Mapped to userId = $userId" . (empty($forceUserId) ? '' : ' [set by civiauth0jwt_force_cid]'));
+        $e->acceptSub(['userId' => $userId]);
       } else {
         if ($NOTIMPLEMENTED) {
-          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but Non-forced cid not implemented yet");
+          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but non-forced user_id not implemented yet");
           $e->rejectSub("Non-forced cid not implemented yet");
         } else {
-          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but unable to map to a contactId");
-          $e->rejectSub("Parsed auth0id = $auth0Id, but unable to map to a contactId");
+          \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id, but unable to map to a userId");
+          $e->rejectSub("Parsed auth0id = $auth0Id, but unable to map to a userId");
         }
       }
     } else {

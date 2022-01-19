@@ -49,10 +49,10 @@
 </div>
 
 <div class="crm-section">
-  <div class="label">{$form.civiauth0jwt_force_cid.label}</div>
+  <div class="label">{$form.civiauth0jwt_force_user_id.label}</div>
   <div class="content">
-    {$form.civiauth0jwt_force_cid.html}
-    <div class="description">(For debugging) If set, will be used instead of looking up the auth0 id.</div>
+    {$form.civiauth0jwt_force_user_id.html}
+    <div class="description">(For debugging) If set, will be used instead of searching the table for a matching auth0 id.</div>
   </div>
   <div class="clear"></div>
 </div>
