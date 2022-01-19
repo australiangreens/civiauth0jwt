@@ -19,7 +19,80 @@ return [
     'html_type' => 'text',
     'html_attributes' => [
       'size' => 60,
-      'spellcheck' => 'false', // It is enumerated, not boolean
+      'spellcheck' => 'false', // This must be the string literal 'false', not a boolean
+      'required' => 'true',
+    ],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
+  ],
+
+  'civiauth0jwt_user_lookup_table_name' => [
+    'name' => 'civiauth0jwt_user_lookup_table',
+    'filter' => 'civiauth0jwt',
+    'type' => 'String',
+    'add' => '5.43.2',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => E::ts('Database table to use to match auth0 ids to CMS user ids'),
+    'title' => E::ts('User lookup table name'),
+    'default' => '',
+    'html_type' => 'text',
+    'html_attributes' => [
+      'size' => 60,
+      'spellcheck' => 'false',
+    ],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
+  ],
+
+  'civiauth0jwt_user_lookup_table_auth0_col' => [
+    'name' => 'civiauth0jwt_user_lookup_table_auth0_col',
+    'filter' => 'civiauth0jwt',
+    'type' => 'String',
+    'add' => '5.43.2',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => E::ts('Name column in the table containing the auth0 id'),
+    'title' => E::ts('User lookup table auth0 id column'),
+    'default' => '',
+    'html_type' => 'text',
+    'html_attributes' => [
+      'size' => 60,
+      'spellcheck' => 'false',
+    ],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
+  ],
+
+  'civiauth0jwt_user_lookup_table_cms_col' => [
+    'name' => 'civiauth0jwt_user_lookup_table_cms_col',
+    'filter' => 'civiauth0jwt',
+    'type' => 'String',
+    'add' => '5.43.2',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => E::ts('Name of column in the table containing the CMS id'),
+    'title' => E::ts('User lookup table CMS id column'),
+    'default' => '',
+    'html_type' => 'text',
+    'html_attributes' => [
+      'size' => 60,
+      'spellcheck' => 'false',
+    ],
+    'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
+  ],
+
+  'civiauth0jwt_user_lookup_table_auth0_col_contains_prefix' => [
+    'name' => 'civiauth0jwt_user_lookup_table_auth0_col_contains_prefix',
+    'filter' => 'civiauth0jwt',
+    'type' => 'Boolean',
+    'add' => '5.43.2',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => E::ts('Should be checked if the auth0 id column contains values like "auth0|1234". Uncheck if already stripped out to be "1234".'),
+    'title' => E::ts('Auth0 column contains "Auth0|" prefix'),
+    'default' => true,
+    'html_type' => 'checkbox',
+    'html_attributes' => [
+      'size' => 60,
+      'spellcheck' => 'false',
     ],
     'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
@@ -53,6 +126,7 @@ return [
     'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],
 
+
   'civiauth0jwt_force_user_id' => [
     'name' => 'civiauth0jwt_force_user_id',
     'filter' => 'civiauth0jwt',
@@ -66,7 +140,7 @@ return [
     'html_type' => 'text',
     'html_attributes' => [
       'size' => 60,
-      'spellcheck' => 'false', // It is enumerated, not boolean
+      'spellcheck' => 'false',
     ],
     'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
   ],

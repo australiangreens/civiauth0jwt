@@ -11,8 +11,15 @@
   </em>
 </p>
 
+<p>
+  <em>
+    Only the Auth0 domain is strictly required. If the lookup table details are
+    not set then you can still use the force user id setting for debugging purposes.
+  </em>
+</p>
+
 <div class="crm-section">
-  <div class="label">{$form.civiauth0jwt_auth0_domain.label}</div>
+  <div class="label">{$form.civiauth0jwt_auth0_domain.label}*</div>
   <div class="content">
     {$form.civiauth0jwt_auth0_domain.html}
     {* TODO: Retrieve description from metadata instead of hardcoding it here *}
@@ -20,6 +27,40 @@
   </div>
   <div class="clear"></div>
 </div>
+
+<div class="crm-section">
+  <div class="label">{$form.civiauth0jwt_user_lookup_table_name.label}</div>
+  <div class="content">
+    {$form.civiauth0jwt_user_lookup_table_name.html}
+    <div class="description">Database table to use to match auth0 ids to CMS user ids</div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="crm-section">
+  <div class="label">{$form.civiauth0jwt_user_lookup_table_auth0_col.label}</div>
+  <div class="content">
+    {$form.civiauth0jwt_user_lookup_table_auth0_col.html}
+    <div class="description">Name column in the table containing the auth0 id</div>
+  </div>
+  <div class="clear"></div>
+
+  <div class="content">
+    {$form.civiauth0jwt_user_lookup_table_auth0_col_contains_prefix.html}
+    <div class="description">Check if the auth0 ids in table contain the prefix, E.g. "auth0|1234".<br/>Uncheck if already stripped out, E.g. "1234".</div>
+  </div>
+  <div class="clear">
+</div>
+
+<div class="crm-section">
+  <div class="label">{$form.civiauth0jwt_user_lookup_table_cms_col.label}</div>
+  <div class="content">
+    {$form.civiauth0jwt_user_lookup_table_cms_col.html}
+    <div class="description">Name of column in the table containing the CMS id</div>
+  </div>
+  <div class="clear"></div>
+</div>
+
 
 
 <div class="crm-section">

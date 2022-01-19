@@ -42,8 +42,6 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
     $auth0Tenant = new Auth0Tenant($domain);
     list($kid, $pem) = $auth0Tenant->fetchNewSigningKey();
 
-
-
     // Now continue with the newly fetched values
     $params['civiauth0jwt_public_signing_key_id'] = $kid;
     $params['civiauth0jwt_public_signing_key_pem'] = $pem;
@@ -58,6 +56,11 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
       self::saveSettingOnAllDomains($params, 'civiauth0jwt_public_signing_key_id');
       self::saveSettingOnAllDomains($params, 'civiauth0jwt_public_signing_key_pem');
       self::saveSettingOnAllDomains($params, 'civiauth0jwt_force_user_id');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_user_lookup_table_name');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_user_lookup_table_auth0_col');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_user_lookup_table_auth0_col_contains_prefix');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_user_lookup_table_cms_col');
+
       Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on all domains");
     } else {
       Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on current domain");
