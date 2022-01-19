@@ -20,6 +20,9 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
     ];
 
     Civi::resources()->addStyle('pre.civiauth0jwt-static {' . implode(';', $styleStrs) . '}');
+    Civi::resources()->addStyle('.civiauth0jwt-align-hack { vertical-align: middle }');
+
+
 
     // public_signing_key_id and auth0jwt_public_signing_key_pem are settings,
     // but we don't let the user edit them directly, instead the current values
@@ -31,7 +34,8 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
   }
 
   public function postProcess() {
-    // This is the same as the parent postProcess except we modify params
+    // This is similar to the parent postProcess except we modify params, and
+    // depending on __all_civi_domains save the settings across all domains
     $params = $this->controller->exportValues($this->_name); // Submitted values
 
     $domain = $params['civiauth0jwt_auth0_domain'];
@@ -39,11 +43,34 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
     // TODO: Should we catch exception, or just let everything die so we know?
     list($kid, $pem) = Util::fetchNewSigningKey($domain);
 
-    Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n");
+
 
     // Now continue with the newly fetched values
     $params['civiauth0jwt_public_signing_key_id'] = $kid;
     $params['civiauth0jwt_public_signing_key_pem'] = $pem;
+
+    // The special __all_civi_domains form element does not correspond to a
+    // setting, so won't be in $params
+    $allCiviDomains = \CRM_Utils_Request::retrieve('__all_civi_domains', 'Integer');
+    // Will be 1 if box was checked, otherwise null
+
+    if ($allCiviDomains) {
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_auth0_domain');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_public_signing_key_id');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_public_signing_key_pem');
+      self::saveSettingOnAllDomains($params, 'civiauth0jwt_force_user_id');
+      Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on all domains");
+    } else {
+      Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on current domain");
+    }
+
+    // TODO: This will mean the settings get saved twice in current domain, but doesn't seem like a big problem
     parent::commonProcess($params);
+  }
+
+  private static function saveSettingOnAllDomains($params, $name) {
+    if ($params[$name]) {
+      civicrm_api3('Setting', 'create', ['domain_id' => 'all', $name => $params[$name]]);
+    }
   }
 }

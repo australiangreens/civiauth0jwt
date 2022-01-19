@@ -1,9 +1,3 @@
 fileignoreconfig:
-  - filename: info.xml
-    checksum: 0eb79a0e9df3d338db8060043472a2d4aa8c5400a0458ef523491c51192bc3b2
-  - filename: auth0jwt.php
-    checksum: b0e966af98108ada853fb102f5356819778a8ad5680cd09c715d9f34699c7346
-  - filename: CRM/CiviAuth0jwt/Form/Settings.php
-    checksum: 28060970aef76e4f614e6fed21923cabe85f0f2bd83e8e321df5dd247aecd935
-  - filename: templates/CRM/CiviAuth0Jwt/Form/Settings.tpl
-    checksum: 2c9284fa9be76ff4e52d137d5c64a391d88e058f00e24754a87262eb9ae63f8c
+  - filename: CRM/CiviAuth0Jwt/Form/Settings.php
+    checksum: 016668eece625695c030754fa6be3de0ddfe4ccbe711e43949776f6ac8f35b81
