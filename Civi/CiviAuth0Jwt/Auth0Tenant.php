@@ -5,10 +5,23 @@ namespace Civi\CiviAuth0Jwt;
 use GuzzleHttp\Client;
 
 /**
- * Utils - class with generic functions
+ * Auth0Tenant
  *
  */
-class Util {
+class Auth0Tenant {
+
+  /**
+   * @var string The domain (not including https://).
+   * E.g. "sometenant.auth0.com"
+   */
+  protected $domain;
+
+  /**
+   * Auth0Tenant constructor.
+   */
+  public function __construct(string $domain) {
+    $this->domain = $domain;
+  }
 
   /**
    * Try to fetch (and format as appropriate) the latest key id and cert from
@@ -19,8 +32,8 @@ class Util {
    * @return  array          [kid, pem]
    *
    */
-  public static function fetchNewSigningKey($domain): array {
-    $jwksUri = "https://$domain/.well-known/jwks.json";
+  public function fetchNewSigningKey(): array {
+    $jwksUri = "https://" . $this->domain . "/.well-known/jwks.json";
 
     $client = new Client();
 

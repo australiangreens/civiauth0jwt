@@ -1,6 +1,6 @@
 <?php
 
-use Civi\CiviAuth0Jwt\Util;
+use Civi\CiviAuth0Jwt\Auth0Tenant;
 
 /**
  * Form controller class
@@ -22,8 +22,6 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
     Civi::resources()->addStyle('pre.civiauth0jwt-static {' . implode(';', $styleStrs) . '}');
     Civi::resources()->addStyle('.civiauth0jwt-align-hack { vertical-align: middle }');
 
-
-
     // public_signing_key_id and auth0jwt_public_signing_key_pem are settings,
     // but we don't let the user edit them directly, instead the current values
     // are displayed before saving.
@@ -41,7 +39,8 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
     $domain = $params['civiauth0jwt_auth0_domain'];
 
     // TODO: Should we catch exception, or just let everything die so we know?
-    list($kid, $pem) = Util::fetchNewSigningKey($domain);
+    $auth0Tenant = new Auth0Tenant($domain);
+    list($kid, $pem) = $auth0Tenant->fetchNewSigningKey();
 
 
 
