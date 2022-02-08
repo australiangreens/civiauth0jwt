@@ -102,7 +102,7 @@
   <div class="label">Save for all domains</div>
     <div class="content">
       {* __all_civi_domains is a special input that does not correspond to a setting*}
-      <input id="__all_civi_domains" name="__all_civi_domains" type="checkbox" value="1" class="crm-form-checkbox civiauth0jwt-align-hack">
+      <input id="__all_civi_domains" name="__all_civi_domains" type="checkbox" value="1" class="crm-form-checkbox civiauth0jwt-align-hack" checked>
       <label class="description align-hack" for="__all_civi_domains">Check to update settings across all domains on a multi-site installation.</label>
     </div>
     <div class="clear"></div>
