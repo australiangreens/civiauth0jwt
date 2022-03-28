@@ -17,7 +17,6 @@ class Listen {
     // this might not be necessary later
     $event->acceptScope();
 
-
     if (!empty($claims['sub'])) {
       $forceUserId = \Civi::settings()->get('civiauth0jwt_force_user_id');
       if (empty($forceUserId)) {
@@ -29,7 +28,7 @@ class Listen {
           $event->rejectSub($rejectionMsg);
         }
       } else {
-        \Civi::log()->debug("jwtClaimsCheck() called. Parsed auth0id = $auth0Id. Mapped to userId = $userId [set by civiauth0jwt_force_cid]");
+        \Civi::log()->debug("jwtClaimsCheck() called. Unparsed sub = $claims[sub]. Mapped to userId = $forceUserId [set by civiauth0jwt_force_cid]");
         $event->acceptSub(['userId' => $forceUserId]);
       }
     } else {
