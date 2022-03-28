@@ -39,6 +39,7 @@ class Listen {
 
   private static function getCmsUserId($subClaim) {
     $userId = null;
+    $rejectionMsg = null;
     try {
       $auth0User = new Auth0User($subClaim);
       $userId = $auth0User->getCmsUserId();
