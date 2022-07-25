@@ -54,10 +54,11 @@ function civiauth0jwt_civicrm_crypto($registry) {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_container/
  */
 function civiauth0jwt_civicrm_container(\Symfony\Component\DependencyInjection\ContainerBuilder $container) {
-  $container->register('authx_credentials', '\Civi\Authx\CheckCredential')
+  $container->register('civiauth0jwt_credentials', '\Civi\CiviAuth0Jwt\CheckAuth0JwtCredential')
     ->addTag('kernel.event_subscriber')
     ->setPublic(TRUE);
 }
+
 
 
 /**
