@@ -47,11 +47,12 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
         $claims = \Civi::service('crypto.jwt')->decode($checkEvent->credValue);
 
         // TODO: Is there a specific scope we can check for, similar to how authx now checks?
-        // $scopes = isset($claims['scope']) ? explode(' ', $claims['scope']) : [];
-        // if (!in_array('auth0????', $scopes)) {
-        //   // This is not an authx JWT. Proceed to check any other token sources.
-        //   return;
-        // }
+        $scopes = isset($claims['scope']) ? explode(' ', $claims['scope']) : [];
+        if (!in_array('openid', $scopes)) {
+          // The openid scope is a minimum. We might be dealing with a non-auth0
+          // token so proceed to check any other token sources.
+          return;
+        }
 
         if (empty($claims['sub'])) {
           // TODO: What about the sub being in wrong format?
