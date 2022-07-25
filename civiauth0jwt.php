@@ -36,18 +36,6 @@ function civiauth0jwt_civicrm_crypto($registry) {
 
 
 /**
- * Implements hook_civicrm_config()
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
- */
-// function civiauth0jwt_civicrm_config(&$config) {
-//   _civiauth0jwt_civix_civicrm_config($config);
-
-//   // Listen for the claims check event so we can override the handling of claims
-//   \Civi::service('dispatcher')->addListener('civi.authx.jwtclaimscheck', ['Civi\CiviAuth0Jwt\Listen', 'jwtClaimsCheck']);
-// }
-
-/**
  * Implement hook_civicrm_container() to add our subscriber to listen for authx
  * credential events.
  *
