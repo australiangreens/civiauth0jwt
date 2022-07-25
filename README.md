@@ -8,8 +8,8 @@ authentication of requests by:
 1. Retrieving and add the signing key of a specified Auth0 tenant to the
    registry used to validate JWTs in core AuthX extension.
 
-2. Listens for the `civi.authx.jwtclaimscheck` symphony event, using it to
-   override the processing of the `sub` claim in the JWT, replacing it with
+2. Subscribes to `civi.authx.checkCredential` symphony event dispatched by the
+   Authx, using it to check the `sub` claim in the JWT, replacing it with
    matching an auth0 id against CMS user ids linked to contact ids.
 
 ## Motivation
@@ -34,7 +34,7 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 * [AuthX](https://docs.civicrm.org/dev/en/latest/framework/authx/) core
   extension enabled. [TODO: Refer to the version with the PR adding in the
-  `civi.authx.jwtclaimscheck` event in]
+  `civi.authx.checkCredential` event in]
 
 * Drupal CMS with [Drupal Auth0](https://www.drupal.org/project/auth0) library
   (*This is temporary and will be replaced with use of the
