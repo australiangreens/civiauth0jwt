@@ -84,8 +84,6 @@ use CRM_CiviAuth0Jwt_ExtensionUtil as E;
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
 function _civiauth0jwt_civix_civicrm_config(&$config = NULL) {
-  \CRM_Core_Error::debug_log_message("_civiauth0jwt_civix_civicrm_config()");
-
   static $configured = FALSE;
   if ($configured) {
     return;
@@ -105,7 +103,6 @@ function _civiauth0jwt_civix_civicrm_config(&$config = NULL) {
 
   $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
   set_include_path($include_path);
-  \CRM_Core_Error::debug_log_message("_civiauth0jwt_civix_civicrm_config path updated(): added $extRoot");
 }
 
 /**

@@ -47,6 +47,15 @@ function civiauth0jwt_civicrm_container(\Symfony\Component\DependencyInjection\C
 }
 
 /**
+ * Implements hook_civicrm_config().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
+ */
+function civiauth0jwt_civicrm_config(&$config) {
+  _civiauth0jwt_civix_civicrm_config($config);
+}
+
+/**
  * Implements hook_civicrm_install().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
@@ -112,6 +121,7 @@ function civiauth0jwt_civicrm_entityTypes(&$entityTypes) {
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
+//     I.e. just for development purposes
 
 /**
  * Implements hook_civicrm_preProcess().
