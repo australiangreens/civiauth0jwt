@@ -22,14 +22,14 @@ function civiauth0jwt_civicrm_crypto($registry) {
       'id' => $auth0SigningKeyId,
       'key' => $auth0SigningKeyPem,
       'suite' => 'jwt-rs256',
-      'tags' => ['SIGN'],
-
       // By default during install CiviCRM will populate CIVICRM_SIGN_KEYS with
-      // a new signing key with suite of jwt-hs256. That will be added to the
-      // registry with a weight of 0, so we use a weight of -1 here to ensure
-      // our signing key is used instead by the CryptoJwt class called by AuthX.
-      // TODO: Is using -1 still the best approach?
-      'weight' => -1,
+      // a new signing key with suite of jwt-hs256 and That will be added to the
+      // registry with a weight of 0 and tag of 'SIGN'.
+      //
+      // We use a different tag to avoid clashing with this in other contexts.
+      // Without our extension it isn't needed though, since we use the id
+      // directly.
+      'tags' => ['SIGN_AUTH0'],
     ]);
   }
 }

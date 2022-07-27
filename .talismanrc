@@ -3,3 +3,5 @@ fileignoreconfig:
     checksum: 016668eece625695c030754fa6be3de0ddfe4ccbe711e43949776f6ac8f35b81
   - filename: Civi/CiviAuth0Jwt/Util.php
     checksum: dea79b8816a74bf34a712a9e577b8d22058977b7e670b20b59dbe0a4030ba6b0
+  - filename: Civi/CiviAuth0Jwt/CheckAuth0JwtCredential.php
+    checksum: f7aa04a0a05ce0682eac3a0ce93a34886e7f2bd7a4db71db1bbdf07ad6d2fd11

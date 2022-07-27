@@ -44,7 +44,12 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
   public function bearerAuth0Jwt(CheckCredentialEvent $checkEvent): void {
     if ($checkEvent->credFormat === 'Bearer') {
       try {
-        $claims = \Civi::service('crypto.jwt')->decode($checkEvent->credValue);
+        $signingKeyId = \Civi::settings()->get('civiauth0jwt_public_signing_key_id');
+        if (empty($signingKeyId)) {
+          throw new Exception\CiviAuth0JwtException('civiauth0jwt_public_signing_key_id not set');
+        }
+
+        $claims = \Civi::service('crypto.jwt')->decode($checkEvent->credValue, $signingKeyId);
 
         // TODO: Is there a specific scope we can check for, similar to how authx now checks?
         $scopes = isset($claims['scope']) ? explode(' ', $claims['scope']) : [];
@@ -62,7 +67,6 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
           $checkEvent->reject('Malformed JWT. Missing sub');
           return;
         }
-
 
         $userId = \Civi::settings()->get('civiauth0jwt_force_user_id');
         if (!empty($userId)) {
