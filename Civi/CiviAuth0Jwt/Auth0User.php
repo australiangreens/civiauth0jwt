@@ -16,12 +16,12 @@ class Auth0User {
   public $subClaim;
 
   /**
-   * @var integer
+   * @var int
    */
   public $auth0Id;
 
   /**
-   * @var integer
+   * @var int
    */
   private $_cmsUserId;
 
@@ -36,7 +36,7 @@ class Auth0User {
   protected $lookupTableAuth0Col;
 
   /**
-   * @var boolean
+   * @var bool
    */
   protected $lookupTableAuth0ColIsPrefixed;
 
@@ -103,4 +103,5 @@ class Auth0User {
       ? $this->subClaim
       : $this->auth0Id;
   }
+
 }

@@ -34,7 +34,7 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
   public function postProcess() {
     // This is similar to the parent postProcess except we modify params, and
     // depending on __all_civi_domains save the settings across all domains
-    $params = $this->controller->exportValues($this->_name); // Submitted values
+    $params = $this->controller->exportValues($this->_name);
 
     $domain = $params['civiauth0jwt_auth0_domain'];
 
@@ -62,7 +62,8 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
       self::saveSettingOnAllDomains($params, 'civiauth0jwt_user_lookup_table_cms_col');
 
       Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on all domains");
-    } else {
+    }
+    else {
       Civi::log()->info("Fetched new civiauth0jwt_public_signing_key_id setting (\"$kid\") and pem from $domain\n: Saved on current domain");
     }
 
@@ -75,4 +76,5 @@ class CRM_CiviAuth0Jwt_Form_Settings extends CRM_Admin_Form_Setting {
       civicrm_api3('Setting', 'create', ['domain_id' => 'all', $name => $params[$name]]);
     }
   }
+
 }

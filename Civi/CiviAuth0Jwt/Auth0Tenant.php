@@ -11,8 +11,8 @@ use GuzzleHttp\Client;
 class Auth0Tenant {
 
   /**
-   * @var string The domain (not including https://).
-   * E.g. "sometenant.auth0.com"
+   * @var string
+   * The domain (not including https:// E.g. "sometenant.auth0.com")
    */
   protected $domain;
 
@@ -25,12 +25,9 @@ class Auth0Tenant {
 
   /**
    * Try to fetch (and format as appropriate) the latest key id and cert from
-   * provided auth0 domain.
+   * the domain provided at contruction time.
    *
-   * @param   string  $domain  Auth0 domain
-   *
-   * @return  array          [kid, pem]
-   *
+   * @return array [kid, pem]
    */
   public function fetchNewSigningKey(): array {
     $jwksUri = "https://" . $this->domain . "/.well-known/jwks.json";
@@ -40,7 +37,7 @@ class Auth0Tenant {
     $res = $client->get($jwksUri);
 
     if ($res->getStatusCode() == 200) {
-      $jwks = json_decode($res->getBody(), true);
+      $jwks = json_decode($res->getBody(), TRUE);
 
       // The current key will be the first in the array
       $key = $jwks['keys'][0];
@@ -54,7 +51,7 @@ class Auth0Tenant {
       // to work, but it makes it match rfc7468 as expect.
       // TODO: If there are multiple should we actually only be using the first?
       $certs = array_map(function ($x) {
-        return "-----BEGIN CERTIFICATE-----\n" . wordwrap($x, 64, "\n", true) . "\n-----END CERTIFICATE-----";
+        return "-----BEGIN CERTIFICATE-----\n" . wordwrap($x, 64, "\n", TRUE) . "\n-----END CERTIFICATE-----";
       }, $key['x5c']);
 
       $pem = implode("\n", $certs);
@@ -64,4 +61,5 @@ class Auth0Tenant {
 
     throw new \Exception("Unable to retrieve data from $jwksUri");
   }
+
 }

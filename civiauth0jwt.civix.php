@@ -74,6 +74,7 @@ class CRM_CiviAuth0Jwt_ExtensionUtil {
   public static function findClass($suffix) {
     return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
   }
+
 }
 
 use CRM_CiviAuth0Jwt_ExtensionUtil as E;
@@ -97,7 +98,8 @@ function _civiauth0jwt_civix_civicrm_config(&$config = NULL) {
 
   if (is_array($template->template_dir)) {
     array_unshift($template->template_dir, $extDir);
-  } else {
+  }
+  else {
     $template->template_dir = [$extDir, $template->template_dir];
   }
 
@@ -196,7 +198,8 @@ function _civiauth0jwt_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL)
 function _civiauth0jwt_civix_upgrader() {
   if (!file_exists(__DIR__ . '/CRM/CiviAuth0Jwt/Upgrader.php')) {
     return NULL;
-  } else {
+  }
+  else {
     return CRM_CiviAuth0Jwt_Upgrader_Base::instance();
   }
 }
@@ -222,7 +225,8 @@ function _civiauth0jwt_civix_insert_navigation_menu(&$menu, $path, $item) {
       ], $item),
     ];
     return TRUE;
-  } else {
+  }
+  else {
     // Find an recurse into the next level down
     $found = FALSE;
     $path = explode('/', $path);

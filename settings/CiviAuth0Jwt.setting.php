@@ -1,6 +1,7 @@
 <?php
 
 use CRM_CiviAuth0Jwt_ExtensionUtil as E;
+
 /*
  * Settings metadata file
  */
@@ -19,7 +20,8 @@ return [
     'html_type' => 'text',
     'html_attributes' => [
       'size' => 60,
-      'spellcheck' => 'false', // This must be the string literal 'false', not a boolean
+      // spellcheck must be the string literal 'false', not a boolean
+      'spellcheck' => 'false',
       'required' => 'true',
     ],
     'settings_pages' => ['civiauth0jwt' => ['weight' => 10]],
@@ -88,7 +90,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('Should be checked if the auth0 id column contains values like "auth0|1234". Uncheck if already stripped out to be "1234".'),
     'title' => E::ts('Auth0 column contains "Auth0|" prefix'),
-    'default' => true,
+    'default' => TRUE,
     'html_type' => 'checkbox',
     'html_attributes' => [
       'size' => 60,
@@ -136,7 +138,7 @@ return [
     'is_contact' => 0,
     'description' => E::ts('(For debugging) If set, will be used instead of searching the table for a matching auth0 id.'),
     'title' => E::ts('Force user id'),
-    'default' => null,
+    'default' => NULL,
     'html_type' => 'text',
     'html_attributes' => [
       'size' => 60,

@@ -6,9 +6,6 @@ use Civi\Crypto\Exception\CryptoException;
 use Civi\Authx\CheckCredentialEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- *
- */
 class CheckAuth0JwtCredential implements EventSubscriberInterface {
 
   /**
@@ -16,7 +13,6 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
    * 'username:password'.
    */
   const PRIORITY_BEARER_AUTH0_JWT = 200;
-
 
   /**
    * @inheritdoc
@@ -39,7 +35,7 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
    * Authx has an equivalent subscriber that will return without processing if
    * the scope does not contain 'authx'.
    *
-   * @param CheckCredentialEvent $checkEvent
+   * @param Civi\Authx\CheckCredentialEvent $checkEvent
    */
   public function bearerAuth0Jwt(CheckCredentialEvent $checkEvent): void {
     if ($checkEvent->credFormat === 'Bearer') {
@@ -76,33 +72,39 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
           Logger::debug("ACCEPTED, sub = $claims[sub] mapped to userId = $userId");
           $checkEvent->accept(['userId' => $userId, 'credType' => 'jwt', 'jwt' => $claims]);
           return;
-        } else {
+        }
+        else {
           // TODO: Here we are explicitly rejecting. Could instead do nothing and let authx process as normal?
           $checkEvent->reject($rejectionMsg);
         }
-      } catch (CryptoException $e) {
+      }
+      catch (CryptoException $e) {
         // Not a valid AuthX JWT. Proceed to check any other token sources.
         Logger::debug("IGNORED, decode failed (CryptoException): " . $e->getMessage());
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         Logger::debug("IGNORED, decode failed (Exception): " . $e->getMessage());
       }
     }
   }
 
   private static function getCmsUserId($subClaim) {
-    $userId = null;
-    $rejectionMsg = null;
+    $userId = NULL;
+    $rejectionMsg = NULL;
     try {
       $auth0User = new Auth0User($subClaim);
       $userId = $auth0User->getCmsUserId();
-    } catch (Exception\SubClaimParseException $e) {
+    }
+    catch (Exception\SubClaimParseException $e) {
       Logger::debug("REJECTED, unable to parse sub claim " . $e->getMessage());
       $rejectionMsg = "CiviAuth0Jwt. Rejected because sub claim couldn't be parsed: " . $e->getMessage();
-    } catch (Exception\UserMatchNotFoundException $e) {
+    }
+    catch (Exception\UserMatchNotFoundException $e) {
       Logger::debug("REJECTED, user match not found: " . $e->getMessage());
       $rejectionMsg = 'CiviAuth0Jwt. Unable to match to valid user';
     }
 
     return [$userId, $rejectionMsg];
   }
+
 }

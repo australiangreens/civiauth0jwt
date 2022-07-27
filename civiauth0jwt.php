@@ -5,9 +5,10 @@ require_once 'civiauth0jwt.civix.php';
 use CRM_CiviAuth0Jwt_ExtensionUtil as E;
 // phpcs:enable
 
-
 /**
- * Implements hook_civicrm_crypto() to store the retrieved keys.
+ * Implements hook_civicrm_crypto().
+ *
+ * Stores the retrieved keys.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_crypto/
  */
@@ -34,8 +35,9 @@ function civiauth0jwt_civicrm_crypto($registry) {
 }
 
 /**
- * Implement hook_civicrm_container() to add our subscriber to listen for authx
- * credential events.
+ * Implements hook_civicrm_container().
+ *
+ * Adds our subscriber to listen for authx credential events.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_container/
  */
