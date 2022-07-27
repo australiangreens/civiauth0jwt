@@ -26,9 +26,8 @@ function civiauth0jwt_civicrm_crypto($registry) {
       // a new signing key with suite of jwt-hs256 and That will be added to the
       // registry with a weight of 0 and tag of 'SIGN'.
       //
-      // We use a different tag to avoid clashing with this in other contexts.
-      // Without our extension it isn't needed though, since we use the id
-      // directly.
+      // We could use the same tag and use a lower weight, but that can cause
+      // various problems. Instead we just use a distinct tag.
       'tags' => ['SIGN_AUTH0'],
     ]);
   }
