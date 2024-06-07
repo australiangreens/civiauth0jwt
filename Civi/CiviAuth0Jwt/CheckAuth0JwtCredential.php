@@ -82,6 +82,7 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
         // Not a valid AuthX JWT. Proceed to check any other token sources.
       }
       catch (\Exception $e) {
+        // Not a valid AuthX JWT. Proceed to check any other token sources.
       }
     }
   }
