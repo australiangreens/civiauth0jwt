@@ -80,10 +80,9 @@ class CheckAuth0JwtCredential implements EventSubscriberInterface {
       }
       catch (CryptoException $e) {
         // Not a valid AuthX JWT. Proceed to check any other token sources.
-        Logger::debug("IGNORED, decode failed (CryptoException): " . $e->getMessage());
       }
       catch (\Exception $e) {
-        Logger::debug("IGNORED, decode failed (Exception): " . $e->getMessage());
+        // Not a valid AuthX JWT. Proceed to check any other token sources.
       }
     }
   }
